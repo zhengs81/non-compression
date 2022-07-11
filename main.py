@@ -28,8 +28,6 @@ def partition_data(train_data, train_labels):
 
 
 def partially_shuffle_data(train_data, train_labels, percentage):
-    if percentage == 0:
-        return train_data, train_labels
     num_data = len(train_data)
     num_fixed = int(num_data * percentage)
     fixed_train_data = train_data[0: num_fixed]
@@ -44,9 +42,14 @@ def partially_shuffle_data(train_data, train_labels, percentage):
 
     rest_len = int(len(rest_train_data) / 10)
 
-    for i in range(10):
-        p_train_data[i] = np.concatenate((p_train_data[i], rest_train_data[i*rest_len: (i+1)*rest_len]))
-        p_train_label[i] = np.concatenate((p_train_label[i], rest_train_label[i*rest_len: (i+1)*rest_len]))
+    if p_train_data == [[], [], [], [], [], [], [], [], [], []]:
+        for i in range(10):
+            p_train_data[i] = rest_train_data[i*rest_len: (i+1)*rest_len]
+            p_train_label[i] = rest_train_label[i*rest_len: (i+1)*rest_len]
+    else:
+        for i in range(10):
+            p_train_data[i] = np.concatenate((p_train_data[i], rest_train_data[i*rest_len: (i+1)*rest_len]))
+            p_train_label[i] = np.concatenate((p_train_label[i], rest_train_label[i*rest_len: (i+1)*rest_len]))
 
     return p_train_data, p_train_label
 
@@ -54,9 +57,9 @@ def partially_shuffle_data(train_data, train_labels, percentage):
 if __name__ == '__main__':
     SEED = 0
     NUM_CLIENTS = 10
-    CLIENT_LOCAL_UPDATES = 5
+    CLIENT_LOCAL_UPDATES = 20
     turn = 0
-    SHUFFLE_RATE = 1
+    SHUFFLE_RATE = 0
     tf.random.set_seed(SEED)
 
     train, test = tf.keras.datasets.mnist.load_data()
@@ -86,10 +89,10 @@ if __name__ == '__main__':
     # print(train_labels[9])
 
     epochs = 1
-    l2_norm_clip = 1.3
+    l2_norm_clip = 100000
     std_dev = 1.0
     learning_rate = 0.004
-    noise_multiplier = 0.01 # 0.01
+    noise_multiplier = 0.0 # 0.01
     num_microbatch = 200
     overall_batch = 60000
     percentile = 0.05
