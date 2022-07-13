@@ -50,11 +50,11 @@ if __name__ == '__main__':
         p = dill.load(dill_file)
 
     
-    # with open("Compression, l2_norm=100000noise_multiplier=0.0epochs=1num_microbatch200local_updates=20shuffle_rate=0.9percentile=0.05", "rb") as dill_file:
+    # with open("Compression, l2_norm=100000noise_multiplier=0.0epochs=1num_microbatch200local_updates=20shuffle_rate=1percentile=0.05", "rb") as dill_file:
     #     n = dill.load(dill_file)
-    # with open("Compression, l2_norm=1.3noise_multiplier=0.01epochs=1num_microbatch200local_updates=20shuffle_rate=0.9percentile=0.05", "rb") as dill_file:
+    # with open("Compression, l2_norm=1.3noise_multiplier=0.01epochs=1num_microbatch200local_updates=20shuffle_rate=1percentile=0.05", "rb") as dill_file:
     #     o = dill.load(dill_file)
-    # with open("Compression, l2_norm=1.3noise_multiplier=0.05epochs=1num_microbatch200local_updates=20shuffle_rate=0.9percentile=0.05", "rb") as dill_file:
+    # with open("Compression, l2_norm=1.3noise_multiplier=0.05epochs=1num_microbatch200local_updates=20shuffle_rate=1percentile=0.05", "rb") as dill_file:
     #     p = dill.load(dill_file)
 
     fig = plt.figure()
@@ -91,9 +91,9 @@ if __name__ == '__main__':
     sub5.plot(p, color="red")  
     sub5.title.set_text('10% Similarity')  
 
-    # sub6.plot(n, color="cyan")
-    # sub6.plot(o, color="red")  
-    # sub6.plot(p, color="pink")  
+    # sub6.plot(n, color="black")
+    # sub6.plot(o, color="cyan")  
+    # sub6.plot(p, color="red")  
     # sub6.title.set_text('0% Similarity')  
     
     plt.plot()

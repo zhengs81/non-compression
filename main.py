@@ -59,7 +59,7 @@ if __name__ == '__main__':
     NUM_CLIENTS = 10
     CLIENT_LOCAL_UPDATES = 20
     turn = 0
-    SHUFFLE_RATE = 0.8
+    SHUFFLE_RATE = 0
     tf.random.set_seed(SEED)
 
     train, test = tf.keras.datasets.mnist.load_data()
@@ -92,7 +92,7 @@ if __name__ == '__main__':
     l2_norm_clip = 1.3
     std_dev = 1.0
     learning_rate = 0.004
-    noise_multiplier = 0.05 # 0.01
+    noise_multiplier = 0.001 # 0.01
     num_microbatch = 200
     overall_batch = 60000
     percentile = 0.05
