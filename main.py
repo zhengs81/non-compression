@@ -55,15 +55,11 @@ def partially_shuffle_data(train_data, train_labels, percentage):
 
 
 if __name__ == '__main__':
-    SEED = 0
+    SEED = 5
     NUM_CLIENTS = 10
     CLIENT_LOCAL_UPDATES = 20
     turn = 0
-<<<<<<< HEAD
-    SHUFFLE_RATE = 1
-=======
-    SHUFFLE_RATE = 0
->>>>>>> 9abea75981a1922bc13db6291b4cdb7a0ac34c93
+    SHUFFLE_RATE = 0.9
     tf.random.set_seed(SEED)
 
     train, test = tf.keras.datasets.mnist.load_data()
@@ -96,7 +92,7 @@ if __name__ == '__main__':
     l2_norm_clip = 1.3
     std_dev = 1.0
     learning_rate = 0.004
-    noise_multiplier = 0.01 # 0.01
+    noise_multiplier = 0.001 # 0.01
     num_microbatch = 200
     overall_batch = 60000
     percentile = 0.05
@@ -150,7 +146,7 @@ if __name__ == '__main__':
             optimizer.apply_gradients(zip(grads, model.trainable_variables))
 
 
-    filename = "Compression, l2_norm=" + str(l2_norm_clip) + "noise_multiplier=" + str(noise_multiplier) + "epochs=" + str(epochs) + "num_microbatch" + str(num_microbatch) + "local_updates=" + str(CLIENT_LOCAL_UPDATES) + "shuffle_rate=" + str(SHUFFLE_RATE) + "percentile=" + str(percentile)
+    filename = "Compression, l2_norm=" + str(l2_norm_clip) + "noise_multiplier=" + str(noise_multiplier) + "epochs=" + str(epochs) + "num_microbatch" + str(num_microbatch) + "local_updates=" + str(CLIENT_LOCAL_UPDATES) + "shuffle_rate=" + str(SHUFFLE_RATE) + "percentile=" + str(percentile) + "seed=" + str(SEED)
 
     with open(filename, "wb") as dill_file:
         dill.dump(acc_arr, dill_file)
