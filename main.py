@@ -59,7 +59,11 @@ if __name__ == '__main__':
     NUM_CLIENTS = 10
     CLIENT_LOCAL_UPDATES = 20
     turn = 0
+<<<<<<< HEAD
     SHUFFLE_RATE = 1
+=======
+    SHUFFLE_RATE = 0
+>>>>>>> 9abea75981a1922bc13db6291b4cdb7a0ac34c93
     tf.random.set_seed(SEED)
 
     train, test = tf.keras.datasets.mnist.load_data()
